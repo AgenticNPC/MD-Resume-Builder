@@ -8,7 +8,6 @@ A beautiful, free, open-source resume builder that lets you write in Markdown an
 
 ## ✨ Features
 
-- **Profile Photos** — Upload a profile picture directly from your machine. It perfectly injects and formats into your resume and is saved locally.
 - **Live Preview** — See your resume update in real-time as you type
 - **3 Themes** — Modern, Classic, and Minimal designs
 - **PDF Export** — True 1-click PDF download generation with exact margins (no messy print dialogs)
@@ -17,6 +16,7 @@ A beautiful, free, open-source resume builder that lets you write in Markdown an
 - **Resizable Panes** — Drag to adjust editor/preview split
 - **Tab Support** — Tab key inserts spaces in the editor
 - **Sample Resume** — Load a pre-built example to get started
+- **Profile Photos** — Upload a profile picture directly from your machine. It perfectly injects and formats into your resume and is saved locally.
 
 ![Profile Photo Feature](photo-feature.png)
 
