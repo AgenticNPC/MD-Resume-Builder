@@ -4,6 +4,8 @@ A beautiful, free, open-source resume builder that lets you write in Markdown an
 
 ![Markdown Resume Builder](https://img.shields.io/badge/Made%20With-HTML%2FCSS%2FJS-blue?style=flat-square) ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
+![App Screenshot](screenshot.png)
+
 ## ✨ Features
 
 - **Live Preview** — See your resume update in real-time as you type
