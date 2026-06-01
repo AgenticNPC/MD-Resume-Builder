@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Resume Builder — Write Markdown, Get a Beautiful Resume</title>
+    <meta name="description" content="Free online markdown resume builder. Write in markdown, preview a beautifully formatted resume in real-time, and export to PDF.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header id="app-header">
+            <div class="header-left">
+                <div class="logo">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <rect width="28" height="28" rx="6" fill="url(#logo-grad)"/>
+                        <path d="M7 19V9h2.5l2.5 4 2.5-4H17v10h-2.5v-5.5L12 17.5l-2.5-4V19H7z" fill="white"/>
+                        <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+                    </svg>
+                    <h1>MD Resume</h1>
+                </div>
+                <span class="badge">Free & Open Source</span>
+            </div>
+            <div class="header-right">
+                <button id="btn-load-sample" class="btn btn-ghost" title="Load sample resume">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm1 3h6v1H5V5zm0 2.5h6v1H5v-1zM5 10h4v1H5v-1z"/></svg>
+                    Sample
+                </button>
+                <button id="btn-clear" class="btn btn-ghost" title="Clear editor">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg>
+                    Clear
+                </button>
+                <div class="divider-v"></div>
+                <button id="btn-export-pdf" class="btn btn-primary" title="Export as PDF">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                    Export PDF
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Editor Pane -->
+            <section id="editor-pane" class="pane">
+                <div class="pane-header">
+                    <span class="pane-label">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M1.75 1.75A.75.75 0 0 1 2.5 1h4.586a.75.75 0 0 1 .53.22l4.164 4.163a.75.75 0 0 1 .22.53V12.5a.75.75 0 0 1-.75.75h-9a.75.75 0 0 1-.75-.75v-10.75zm1.5.75v9.25h7.5V6.5H7.5A.75.75 0 0 1 6.75 5.75V2.5H3.25zm4.25.56v2.19h2.19L7.5 3.06z"/></svg>
+                        Markdown
+                    </span>
+                    <span class="char-count" id="char-count">0 chars</span>
+                </div>
+                <textarea id="editor" placeholder="Start typing your resume in markdown...&#10;&#10;# John Doe&#10;## Software Engineer&#10;&#10;---&#10;&#10;### Experience&#10;..." spellcheck="false"></textarea>
+            </section>
+
+            <!-- Resize Handle -->
+            <div id="resize-handle" title="Drag to resize">
+                <div class="handle-dots">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Preview Pane -->
+            <section id="preview-pane" class="pane">
+                <div class="pane-header">
+                    <span class="pane-label">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 3.5C4 3.5 1.73 5.11 .458 7c1.274 1.89 3.542 3.5 6.542 3.5s5.268-1.61 6.542-3.5C12.268 5.11 9.998 3.5 7 3.5zM7 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/><circle cx="7" cy="7" r="1.2"/></svg>
+                        Preview
+                    </span>
+                    <select id="theme-select" title="Resume theme">
+                        <option value="classic">Classic</option>
+                        <option value="modern" selected>Modern</option>
+                        <option value="minimal">Minimal</option>
+                    </select>
+                </div>
+                <div id="preview-wrapper">
+                    <div id="preview" class="resume-theme-modern">
+                        <div class="preview-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="4" width="32" height="40" rx="3"/><line x1="14" y1="14" x2="34" y2="14"/><line x1="14" y1="20" x2="30" y2="20"/><line x1="14" y1="26" x2="34" y2="26"/><line x1="14" y1="32" x2="26" y2="32"/></svg>
+                            <p>Your resume preview will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer id="app-footer">
+            <span>Built with ❤️ — All processing happens in your browser. Your data never leaves your machine.</span>
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
